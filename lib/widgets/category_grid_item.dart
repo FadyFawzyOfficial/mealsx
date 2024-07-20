@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/dummy_meals.dart';
 import '../models/category.dart';
-import '../screens/meal_screen.dart';
+import '../screens/meals_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
@@ -48,7 +48,7 @@ class CategoryGridItem extends StatelessWidget {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => MealScreen(
+        builder: (context) => MealsScreen(
           title: category.title,
           meals: categoryMeals,
         ),
