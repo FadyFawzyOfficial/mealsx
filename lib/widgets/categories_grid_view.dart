@@ -4,9 +4,7 @@ import '../data/dummy_categories.dart';
 import 'category_grid_item.dart';
 
 class CategoriesGridView extends StatelessWidget {
-  final VoidCallback onCategorySelected;
-
-  const CategoriesGridView({super.key, required this.onCategorySelected});
+  const CategoriesGridView({super.key});
 
   @override
   Widget build(context) {
@@ -15,7 +13,6 @@ class CategoriesGridView extends StatelessWidget {
       itemCount: availableCategories.length,
       itemBuilder: (context, index) => CategoryGridItem(
         category: availableCategories[index],
-        onCategorySelected: onCategorySelected,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

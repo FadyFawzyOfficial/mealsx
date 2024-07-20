@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../data/dummy_meals.dart';
 import '../models/category.dart';
+import '../screens/meal_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
-  final VoidCallback onCategorySelected;
 
-  const CategoryGridItem({
-    super.key,
-    required this.category,
-    required this.onCategorySelected,
-  });
+  const CategoryGridItem({super.key, required this.category});
 
   @override
   Widget build(context) {
     return InkWell(
-      onTap: onCategorySelected,
+      onTap: () => _selectCategory(context, category),
       splashColor: Theme.of(context).primaryColor,
       borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: Container(
@@ -39,6 +36,21 @@ class CategoryGridItem extends StatelessWidget {
               .textTheme
               .titleLarge!
               .copyWith(color: Theme.of(context).colorScheme.onSurface),
+        ),
+      ),
+    );
+  }
+
+  void _selectCategory(BuildContext context, Category category) {
+    final categoryMeals = dummyMeals
+        .where((meal) => meal.categories.contains(category.id))
+        .toList();
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MealScreen(
+          title: category.title,
+          meals: categoryMeals,
         ),
       ),
     );
