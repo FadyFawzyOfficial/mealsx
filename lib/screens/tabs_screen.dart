@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/strings.dart';
 import '../models/meal.dart';
 import '../widgets/app_drawer.dart';
 import 'categories_screen.dart';
@@ -22,7 +23,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(['Meals Categories', 'Your Favorites'][screenIndex]),
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(onDrawerItemPressed: navigateFromDrawer),
       body: [
         CategoriesScreen(onMealFavoriteToggled: toggleMealFavoriteStatus),
         MealsScreen(
@@ -48,6 +49,10 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void selectScreen(int index) => setState(() => screenIndex = index);
+
+  void navigateFromDrawer(String screen) {
+    screen == kFilters ? null : Navigator.pop(context);
+  }
 
   void toggleMealFavoriteStatus(Meal meal) {
     setState(

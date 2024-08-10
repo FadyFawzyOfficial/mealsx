@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mealsx/constants/strings.dart';
 
 import '../constants/materials.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key});
+  final void Function(String screenName) onDrawerItemPressed;
+
+  const AppDrawer({super.key, required this.onDrawerItemPressed});
 
   @override
   Widget build(context) {
@@ -44,13 +47,13 @@ class AppDrawer extends StatelessWidget {
           ),
           AppDrawerListTile(
             icon: Icons.restaurant_rounded,
-            label: 'Meals',
-            onPressed: () {},
+            label: kMeals,
+            onPressed: () => onDrawerItemPressed(kMeals),
           ),
           AppDrawerListTile(
             icon: Icons.settings_rounded,
-            label: 'Filters',
-            onPressed: () {},
+            label: kFilters,
+            onPressed: () => onDrawerItemPressed(kFilters),
           ),
         ],
       ),
