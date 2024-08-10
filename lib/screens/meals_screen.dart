@@ -5,13 +5,13 @@ import '../widgets/empty_meals.dart';
 import '../widgets/meal_list_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  final String title;
+  final String? title;
   final List<Meal> meals;
   final Function(Meal meal) onMealFavoriteToggled;
 
   const MealsScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
     required this.onMealFavoriteToggled,
   });
@@ -19,7 +19,7 @@ class MealsScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: title != null ? AppBar(title: Text(title!)) : null,
       body: meals.isNotEmpty
           ? MealsListView(
               meals: meals,

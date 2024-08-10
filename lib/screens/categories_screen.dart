@@ -10,7 +10,6 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meals Categories')),
       body: CategoriesGridView(onMealFavoriteToggled: onMealFavoriteToggled),
     );
   }

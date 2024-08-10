@@ -18,10 +18,12 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(['Meals Categories', 'Your Favorites'][screenIndex]),
+      ),
       body: [
         CategoriesScreen(onMealFavoriteToggled: toggleMealFavoriteStatus),
         MealsScreen(
-          title: 'Favorites',
           meals: favoriteMeals,
           onMealFavoriteToggled: toggleMealFavoriteStatus,
         ),
