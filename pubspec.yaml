@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   # A Flutter package to use fonts from fonts.google.com. Supports HTTP fetching, caching, and asset bundling.
   google_fonts: ^6.2.1
+  # A transparent image in Dart code, represented as a Uint8List.
+  transparent_image: ^2.0.1
 
 dev_dependencies:
   flutter_test:
