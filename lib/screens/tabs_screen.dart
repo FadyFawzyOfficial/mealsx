@@ -4,6 +4,7 @@ import '../constants/strings.dart';
 import '../models/meal.dart';
 import '../widgets/app_drawer.dart';
 import 'categories_screen.dart';
+import 'filters_screen.dart';
 import 'meals_screen.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -51,7 +52,10 @@ class _TabsScreenState extends State<TabsScreen> {
   void selectScreen(int index) => setState(() => screenIndex = index);
 
   void navigateFromDrawer(String screen) {
-    screen == kFilters ? null : Navigator.pop(context);
+    screen == kFilters
+        ? Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const FiltersScreen()))
+        : Navigator.pop(context);
   }
 
   void toggleMealFavoriteStatus(Meal meal) {
