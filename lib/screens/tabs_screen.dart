@@ -52,10 +52,11 @@ class _TabsScreenState extends State<TabsScreen> {
   void selectScreen(int index) => setState(() => screenIndex = index);
 
   void navigateFromDrawer(String screen) {
-    screen == kFilters
-        ? Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const FiltersScreen()))
-        : Navigator.pop(context);
+    Navigator.pop(context);
+    if (screen == kFilters) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const FiltersScreen()));
+    }
   }
 
   void toggleMealFavoriteStatus(Meal meal) {
