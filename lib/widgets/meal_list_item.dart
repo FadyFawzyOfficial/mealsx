@@ -3,6 +3,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../extensions/string_recase.dart';
 import '../models/meal.dart';
+import '../screens/meal_screen.dart';
 import 'meal_item_trait.dart';
 
 class MealListItem extends StatelessWidget {
@@ -20,7 +21,9 @@ class MealListItem extends StatelessWidget {
       ),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {},
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => MealScreen(meal: meal)),
+        ),
         child: Stack(
           children: [
             FadeInImage(
