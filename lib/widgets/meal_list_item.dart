@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import '../extensions/string_recase.dart';
 import '../models/meal.dart';
+import 'meal_item_trait.dart';
 
 class MealListItem extends StatelessWidget {
   const MealListItem({super.key, required this.meal});
@@ -36,16 +38,39 @@ class MealListItem extends StatelessWidget {
                 color: Colors.black54,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    meal.title,
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: Column(
+                    children: [
+                      Text(
+                        meal.title,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MealItemTrait(
+                            icon: Icons.timer_outlined,
+                            label: '${meal.duration} min',
+                          ),
+                          const SizedBox(width: 16),
+                          MealItemTrait(
+                            icon: Icons.work_outline,
+                            label: meal.complexity.name.sentenceCase,
+                          ),
+                          const SizedBox(width: 16),
+                          MealItemTrait(
+                            icon: Icons.attach_money_outlined,
+                            label: meal.affordability.name.sentenceCase,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
