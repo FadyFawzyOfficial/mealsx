@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/meal.dart';
+import '../widgets/app_drawer.dart';
 import 'categories_screen.dart';
 import 'meals_screen.dart';
 
@@ -21,6 +22,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(['Meals Categories', 'Your Favorites'][screenIndex]),
       ),
+      drawer: const AppDrawer(),
       body: [
         CategoriesScreen(onMealFavoriteToggled: toggleMealFavoriteStatus),
         MealsScreen(
