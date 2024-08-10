@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../data/dummy_meals.dart';
 import '../models/category.dart';
+import '../models/meal.dart';
 import '../screens/meals_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
+  final Function(Meal meal) onMealFavoriteToggled;
 
-  const CategoryGridItem({super.key, required this.category});
+  const CategoryGridItem({
+    super.key,
+    required this.category,
+    required this.onMealFavoriteToggled,
+  });
 
   @override
   Widget build(context) {
@@ -51,6 +57,7 @@ class CategoryGridItem extends StatelessWidget {
         builder: (context) => MealsScreen(
           title: category.title,
           meals: categoryMeals,
+          onMealFavoriteToggled: onMealFavoriteToggled,
         ),
       ),
     );
