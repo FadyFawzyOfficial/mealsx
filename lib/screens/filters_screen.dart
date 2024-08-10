@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/materials.dart';
 import '../constants/strings.dart';
-import '../widgets/app_drawer.dart';
-import 'tabs_screen.dart';
+// import '../widgets/app_drawer.dart';
+// import 'tabs_screen.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
@@ -18,14 +18,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(title: const Text(kFilters)),
-      drawer: AppDrawer(onDrawerItemPressed: (screenName) {
-        Navigator.of(context).pop();
-        if (screenName == kMeals) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const TabsScreen()),
-          );
-        }
-      }),
+      // drawer: AppDrawer(onDrawerItemPressed: (screenName) {
+      //   Navigator.of(context).pop();
+      //   if (screenName == kMeals) {
+      //     Navigator.of(context).pushReplacement(
+      //       MaterialPageRoute(builder: (context) => const TabsScreen()),
+      //     );
+      //   }
+      // }),
       body: Column(
         children: [
           SwitchListTile.adaptive(

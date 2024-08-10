@@ -54,8 +54,8 @@ class _TabsScreenState extends State<TabsScreen> {
   void navigateFromDrawer(String screen) {
     Navigator.pop(context);
     if (screen == kFilters) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const FiltersScreen()));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const FiltersScreen()));
     }
   }
 
