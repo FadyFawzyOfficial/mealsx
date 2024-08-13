@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants/materials.dart';
 import '../constants/strings.dart';
+import '../widgets/switch_filter.dart';
 // import '../widgets/app_drawer.dart';
 // import 'tabs_screen.dart';
 
@@ -14,6 +14,7 @@ class FiltersScreen extends StatefulWidget {
 
 class _FiltersScreenState extends State<FiltersScreen> {
   var isGlutenFree = false;
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -28,24 +29,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
       // }),
       body: Column(
         children: [
-          SwitchListTile.adaptive(
+          SwitchFilter(
             value: isGlutenFree,
             onChanged: (isChecked) => setState(() => isGlutenFree = isChecked),
-            title: Text(
-              'Gluten-free',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            subtitle: Text(
-              'Only include gluten-free meals.',
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
-            contentPadding: kPaddingAll16,
-          ),
+            title: 'Gluten-free',
+            subTitle: 'Only include gluten-free meals.',
+          )
         ],
       ),
     );
