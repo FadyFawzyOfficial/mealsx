@@ -22,18 +22,12 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  var isGlutenFree = false;
-  var isLactoseFree = false;
-  var isVegetarian = false;
-  var isVegan = false;
+  late Map<Filter, bool> mealsFilter;
 
   @override
   void initState() {
     super.initState();
-    isGlutenFree = widget.mealsFilter[Filter.glutenFree]!;
-    isLactoseFree = widget.mealsFilter[Filter.lactoseFree]!;
-    isVegetarian = widget.mealsFilter[Filter.vegetarian]!;
-    isVegan = widget.mealsFilter[Filter.vegan]!;
+    mealsFilter = widget.mealsFilter;
   }
 
   @override
@@ -52,39 +46,35 @@ class _FiltersScreenState extends State<FiltersScreen> {
         canPop: false,
         onPopInvoked: (didPop) {
           if (didPop) return;
-          Navigator.of(context).pop({
-            Filter.glutenFree: isGlutenFree,
-            Filter.lactoseFree: isLactoseFree,
-            Filter.vegetarian: isVegetarian,
-            Filter.vegan: isVegan,
-          });
+          Navigator.of(context).pop(mealsFilter);
         },
         child: Column(
           children: [
             SwitchFilter(
-              value: isGlutenFree,
+              value: mealsFilter[Filter.glutenFree]!,
               onChanged: (isChecked) =>
-                  setState(() => isGlutenFree = isChecked),
+                  setState(() => mealsFilter[Filter.glutenFree] = isChecked),
               title: 'Gluten-free',
               subTitle: 'Only include gluten-free meals.',
             ),
             SwitchFilter(
-              value: isLactoseFree,
+              value: mealsFilter[Filter.lactoseFree]!,
               onChanged: (isChecked) =>
-                  setState(() => isLactoseFree = isChecked),
+                  setState(() => mealsFilter[Filter.lactoseFree] = isChecked),
               title: 'Lactose-free',
               subTitle: 'Only include lactose-free meals.',
             ),
             SwitchFilter(
-              value: isVegetarian,
+              value: mealsFilter[Filter.vegetarian]!,
               onChanged: (isChecked) =>
-                  setState(() => isVegetarian = isChecked),
+                  setState(() => mealsFilter[Filter.vegetarian] = isChecked),
               title: 'Vegetarian',
               subTitle: 'Only include vegetarian meals.',
             ),
             SwitchFilter(
-              value: isVegan,
-              onChanged: (isChecked) => setState(() => isVegan = isChecked),
+              value: mealsFilter[Filter.vegan]!,
+              onChanged: (isChecked) =>
+                  setState(() => mealsFilter[Filter.vegan] = isChecked),
               title: 'Vegan',
               subTitle: 'Only include vegan meals.',
             ),
