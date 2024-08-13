@@ -14,6 +14,9 @@ class FiltersScreen extends StatefulWidget {
 
 class _FiltersScreenState extends State<FiltersScreen> {
   var isGlutenFree = false;
+  var isLactoseFree = false;
+  var isVegetarian = false;
+  var isVegan = false;
 
   @override
   Widget build(context) {
@@ -34,7 +37,25 @@ class _FiltersScreenState extends State<FiltersScreen> {
             onChanged: (isChecked) => setState(() => isGlutenFree = isChecked),
             title: 'Gluten-free',
             subTitle: 'Only include gluten-free meals.',
-          )
+          ),
+          SwitchFilter(
+            value: isLactoseFree,
+            onChanged: (isChecked) => setState(() => isLactoseFree = isChecked),
+            title: 'Lactose-free',
+            subTitle: 'Only include lactose-free meals.',
+          ),
+          SwitchFilter(
+            value: isVegetarian,
+            onChanged: (isChecked) => setState(() => isVegetarian = isChecked),
+            title: 'Vegetarian',
+            subTitle: 'Only include vegetarian meals.',
+          ),
+          SwitchFilter(
+            value: isVegan,
+            onChanged: (isChecked) => setState(() => isVegan = isChecked),
+            title: 'Vegan',
+            subTitle: 'Only include vegan meals.',
+          ),
         ],
       ),
     );
