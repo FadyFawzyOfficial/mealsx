@@ -51,11 +51,13 @@ class _TabsScreenState extends State<TabsScreen> {
 
   void selectScreen(int index) => setState(() => screenIndex = index);
 
-  void navigateFromDrawer(String screen) {
+  Future<void> navigateFromDrawer(String screen) async {
     Navigator.pop(context);
     if (screen == kFilters) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const FiltersScreen()));
+      final filterResult = await Navigator.of(context).push<Map<Filter, bool>>(
+          MaterialPageRoute(builder: (context) => const FiltersScreen()));
+
+      print(filterResult);
     }
   }
 
