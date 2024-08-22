@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^6.2.1
   # A transparent image in Dart code, represented as a Uint8List.
   transparent_image: ^2.0.1
+  # A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.
+  flutter_riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:
