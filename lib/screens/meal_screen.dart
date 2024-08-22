@@ -16,9 +16,7 @@ class MealScreen extends ConsumerWidget {
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () => ref
-                .read(favoriteMealsProvider.notifier)
-                .toggleMealFavoriteStatus(meal),
+            onPressed: () => toggleMealFavoriteStatus(context, ref),
             icon: const Icon(Icons.star_rounded),
           ),
         ],
@@ -75,5 +73,18 @@ class MealScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void toggleMealFavoriteStatus(BuildContext context, WidgetRef ref) {
+    final wasMealRemoved =
+        ref.read(favoriteMealsProvider.notifier).toggleMealFavoriteStatus(meal);
+    showInfoMessage(
+        context, wasMealRemoved ? 'Meal removed.' : 'Meal added as a favorite');
+  }
+
+  void showInfoMessage(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 }

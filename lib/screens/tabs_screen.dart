@@ -88,8 +88,4 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       },
     ).toList();
   }
-
-  void showInfoMessage(String message) => ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(content: Text(message)));
 }
