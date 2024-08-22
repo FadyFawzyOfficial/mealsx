@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/strings.dart';
-import '../data/dummy_meals.dart';
 import '../models/meal.dart';
+import '../providers/meals_provider.dart';
 import '../widgets/app_drawer.dart';
 import 'categories_screen.dart';
 import 'filters_screen.dart';
@@ -74,7 +74,8 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   }
 
   List<Meal> get filteredMeals {
-    return dummyMeals.where(
+    final meals = ref.watch(mealsProvider);
+    return meals.where(
       (meal) {
         if (!meal.isGlutenFree && mealsFilter[Filter.glutenFree]!) {
           return false;
