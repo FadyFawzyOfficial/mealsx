@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/strings.dart';
 import '../models/meal.dart';
+import '../providers/favorite_meals_provider.dart';
 import '../providers/meals_provider.dart';
 import '../widgets/app_drawer.dart';
 import 'categories_screen.dart';
@@ -17,7 +18,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 }
 
 class _TabsScreenState extends ConsumerState<TabsScreen> {
-  final List<Meal> favoriteMeals = [];
   int screenIndex = 0;
   var mealsFilter = {
     Filter.glutenFree: false,
@@ -28,20 +28,15 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   @override
   Widget build(context) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(['Meals Categories', 'Your Favorites'][screenIndex]),
       ),
       drawer: AppDrawer(onDrawerItemPressed: navigateFromDrawer),
       body: [
-        CategoriesScreen(
-          onMealFavoriteToggled: toggleMealFavoriteStatus,
-          filteredMeals: filteredMeals,
-        ),
-        MealsScreen(
-          meals: favoriteMeals,
-          onMealFavoriteToggled: toggleMealFavoriteStatus,
-        ),
+        CategoriesScreen(filteredMeals: filteredMeals),
+        MealsScreen(meals: favoriteMeals),
       ][screenIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: selectScreen,
@@ -93,22 +88,4 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       },
     ).toList();
   }
-
-  void toggleMealFavoriteStatus(Meal meal) {
-    setState(
-      () {
-        if (favoriteMeals.contains(meal)) {
-          favoriteMeals.remove(meal);
-          showInfoMessage('Meal is no longer a favorite');
-        } else {
-          favoriteMeals.add(meal);
-          showInfoMessage('Marked as a favorite!');
-        }
-      },
-    );
-  }
-
-  void showInfoMessage(String message) => ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(content: Text(message)));
 }

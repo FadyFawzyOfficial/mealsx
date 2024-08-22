@@ -6,13 +6,11 @@ import '../screens/meals_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
-  final Function(Meal meal) onMealFavoriteToggled;
   final List<Meal> filteredMeals;
 
   const CategoryGridItem({
     super.key,
     required this.category,
-    required this.onMealFavoriteToggled,
     required this.filteredMeals,
   });
 
@@ -62,7 +60,6 @@ class CategoryGridItem extends StatelessWidget {
         builder: (context) => MealsScreen(
           title: category.title,
           meals: categoryMeals,
-          onMealFavoriteToggled: onMealFavoriteToggled,
         ),
       ),
     );
