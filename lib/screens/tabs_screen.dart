@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mealsx/providers/favorite_meals_provider.dart';
 
 import '../constants/strings.dart';
 import '../models/meal.dart';
+import '../providers/favorite_meals_provider.dart';
 import '../providers/meals_provider.dart';
 import '../widgets/app_drawer.dart';
 import 'categories_screen.dart';
@@ -35,14 +35,8 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       ),
       drawer: AppDrawer(onDrawerItemPressed: navigateFromDrawer),
       body: [
-        CategoriesScreen(
-          onMealFavoriteToggled: toggleMealFavoriteStatus,
-          filteredMeals: filteredMeals,
-        ),
-        MealsScreen(
-          meals: favoriteMeals,
-          onMealFavoriteToggled: toggleMealFavoriteStatus,
-        ),
+        CategoriesScreen(filteredMeals: filteredMeals),
+        MealsScreen(meals: favoriteMeals),
       ][screenIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: selectScreen,
@@ -93,20 +87,6 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
         return true;
       },
     ).toList();
-  }
-
-  void toggleMealFavoriteStatus(Meal meal) {
-    setState(
-      () {
-        if (favoriteMeals.contains(meal)) {
-          favoriteMeals.remove(meal);
-          showInfoMessage('Meal is no longer a favorite');
-        } else {
-          favoriteMeals.add(meal);
-          showInfoMessage('Marked as a favorite!');
-        }
-      },
-    );
   }
 
   void showInfoMessage(String message) => ScaffoldMessenger.of(context)
