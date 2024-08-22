@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mealsx/providers/favorite_meals_provider.dart';
 
 import '../constants/strings.dart';
 import '../models/meal.dart';
@@ -17,7 +18,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 }
 
 class _TabsScreenState extends ConsumerState<TabsScreen> {
-  final List<Meal> favoriteMeals = [];
   int screenIndex = 0;
   var mealsFilter = {
     Filter.glutenFree: false,
@@ -28,6 +28,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   @override
   Widget build(context) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(['Meals Categories', 'Your Favorites'][screenIndex]),
