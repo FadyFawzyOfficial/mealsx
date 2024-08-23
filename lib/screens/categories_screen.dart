@@ -25,6 +25,8 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       // lowerBound: 0,
       // upperBound: 1,
     );
+
+    _animationController.forward();
   }
 
   @override
@@ -34,6 +36,18 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   }
 
   @override
-  Widget build(context) =>
-      Scaffold(body: CategoriesGridView(filteredMeals: widget.filteredMeals));
+  Widget build(context) {
+    return Scaffold(
+      body: AnimatedBuilder(
+        animation: _animationController,
+        child: CategoriesGridView(
+          filteredMeals: widget.filteredMeals,
+        ),
+        builder: (context, child) => Padding(
+          padding: EdgeInsets.only(top: 300 - _animationController.value * 300),
+          child: child,
+        ),
+      ),
+    );
+  }
 }
