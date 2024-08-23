@@ -17,7 +17,11 @@ class MealScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () => toggleMealFavoriteStatus(context, ref),
-            icon: const Icon(Icons.star_rounded),
+            icon: Icon(
+              ref.watch(favoriteMealsProvider).contains(meal)
+                  ? Icons.star_rounded
+                  : Icons.star_border_rounded,
+            ),
           ),
         ],
       ),
