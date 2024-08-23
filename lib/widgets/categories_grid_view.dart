@@ -5,14 +5,9 @@ import '../models/meal.dart';
 import 'category_grid_item.dart';
 
 class CategoriesGridView extends StatelessWidget {
-  final Function(Meal meal) onMealFavoriteToggled;
   final List<Meal> filteredMeals;
 
-  const CategoriesGridView({
-    super.key,
-    required this.onMealFavoriteToggled,
-    required this.filteredMeals,
-  });
+  const CategoriesGridView({super.key, required this.filteredMeals});
 
   @override
   Widget build(context) {
@@ -21,7 +16,6 @@ class CategoriesGridView extends StatelessWidget {
       itemCount: availableCategories.length,
       itemBuilder: (context, index) => CategoryGridItem(
         category: availableCategories[index],
-        onMealFavoriteToggled: onMealFavoriteToggled,
         filteredMeals: filteredMeals,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

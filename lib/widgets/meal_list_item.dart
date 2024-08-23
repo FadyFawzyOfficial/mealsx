@@ -7,14 +7,9 @@ import '../screens/meal_screen.dart';
 import 'meal_item_trait.dart';
 
 class MealListItem extends StatelessWidget {
-  const MealListItem({
-    super.key,
-    required this.meal,
-    required this.onMealFavoriteToggled,
-  });
+  const MealListItem({super.key, required this.meal});
 
   final Meal meal;
-  final Function(Meal meal) onMealFavoriteToggled;
 
   @override
   Widget build(context) {
@@ -28,10 +23,7 @@ class MealListItem extends StatelessWidget {
       child: InkWell(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => MealScreen(
-              meal: meal,
-              onMealFavoriteToggled: onMealFavoriteToggled,
-            ),
+            builder: (context) => MealScreen(meal: meal),
           ),
         ),
         child: Stack(
