@@ -17,10 +17,17 @@ class MealScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () => toggleMealFavoriteStatus(context, ref),
-            icon: Icon(
-              ref.watch(favoriteMealsProvider).contains(meal)
-                  ? Icons.star_rounded
-                  : Icons.star_border_rounded,
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              transitionBuilder: (child, animation) => RotationTransition(
+                turns: animation,
+                child: child,
+              ),
+              child: Icon(
+                ref.watch(favoriteMealsProvider).contains(meal)
+                    ? Icons.star_rounded
+                    : Icons.star_border_rounded,
+              ),
             ),
           ),
         ],
