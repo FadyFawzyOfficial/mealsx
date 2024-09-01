@@ -11,6 +11,7 @@ class MealScreen extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
+    final isFavorite = ref.watch(favoriteMealsProvider).contains(meal);
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
@@ -18,15 +19,14 @@ class MealScreen extends ConsumerWidget {
           IconButton(
             onPressed: () => toggleMealFavoriteStatus(context, ref),
             icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 250),
               transitionBuilder: (child, animation) => RotationTransition(
                 turns: animation,
                 child: child,
               ),
               child: Icon(
-                ref.watch(favoriteMealsProvider).contains(meal)
-                    ? Icons.star_rounded
-                    : Icons.star_border_rounded,
+                key: ValueKey(isFavorite),
+                isFavorite ? Icons.star_rounded : Icons.star_border_rounded,
               ),
             ),
           ),
